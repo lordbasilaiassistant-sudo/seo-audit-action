@@ -1,0 +1,22 @@
+name: 'SEO & Tech Audit'
+description: 'Audit a URL for on-page SEO issues in CI — title, meta, headings, canonical, Open Graph, structured data, alt text, and more. Optionally fail the build on a low score.'
+author: 'Eli Web Tools'
+branding:
+  icon: 'search'
+  color: 'blue'
+inputs:
+  url:
+    description: 'The URL to audit'
+    required: true
+  fail-under-score:
+    description: 'Fail the job if the on-page SEO score is below this (0-100). 0 = report only, never fail.'
+    required: false
+    default: '0'
+outputs:
+  score:
+    description: 'The on-page SEO score (0-100)'
+  issues:
+    description: 'JSON array of issues found'
+runs:
+  using: 'node20'
+  main: 'index.js'
