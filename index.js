@@ -9,7 +9,7 @@ async function audit(url) {
   const title = one(html, /<title[^>]*>([^<]*)<\/title>/i);
   const desc = one(html, /<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["']/i) || one(html, /<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["']/i);
   const canonical = one(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']*)["']/i);
-  const viewport = one(html, /<meta[^>]+name=["']viewport["']/i);
+  const viewport = /<meta[^>]+name=["']viewport["']/i.test(html);
   const lang = one(html, /<html[^>]+lang=["']([^"']*)["']/i);
   const h1s = [...html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi)].map((m) => m[1].replace(/<[^>]+>/g, '').trim()).filter(Boolean);
   const og = (html.match(/<meta[^>]+property=["']og:[^"']*["']/gi) || []).length;
